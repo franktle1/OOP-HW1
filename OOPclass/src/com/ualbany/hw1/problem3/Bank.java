@@ -14,7 +14,6 @@ public class Bank {
 		System.out.println(r.getBalance());
 		r.withdraw("25.00");
 		System.out.println(r.getBalance());
-		System.out.println(r.getBalance());
-		System.out.println(r.getBalance());
+		
 	}
 }

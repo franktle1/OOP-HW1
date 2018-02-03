@@ -1,5 +1,7 @@
 package com.ualbany.hw1.problem3;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 import javax.swing.JOptionPane;
@@ -23,19 +25,20 @@ public class CheckingBankAccount {
 	
 	public void withdraw(String input) {
 		if(validDouble(input)) {
-			double x = Double.parseDouble(input);
-			String temp = (new DecimalFormat("#.00").format(x));
-			double num = Double.parseDouble(temp);
-			this.balance -= num;}
+			BigDecimal num = new BigDecimal(input);
+			num = num.setScale(2, RoundingMode.HALF_UP);
+			BigDecimal bal = new BigDecimal(String.valueOf(balance));
+			this.balance = bal.subtract(num).doubleValue();}
 		else
 			JOptionPane.showMessageDialog(null, "Enter a valid amount.");}
 	
 	public void deposit(String input) {
 		if(validDouble(input)) {
-			double x = Double.parseDouble(input);
-			String temp = (new DecimalFormat("#.00").format(x));
-			double num = Double.parseDouble(temp);
-			this.balance += num;}
+			BigDecimal num = new BigDecimal(input);
+			num = num.setScale(2, RoundingMode.HALF_UP);
+			BigDecimal bal = new BigDecimal(String.valueOf(balance));
+			this.balance = bal.add(num).doubleValue();
+		}
 		else
 			JOptionPane.showMessageDialog(null, "Enter a valid amount.");}
 	
