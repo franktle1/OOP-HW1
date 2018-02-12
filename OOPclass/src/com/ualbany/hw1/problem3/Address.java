@@ -18,8 +18,8 @@ public class Address {
 	
 	public String getFullAddress() {
 		if(addressLine2.compareTo("")==0) 
-			return addressLine1 +", "+ cityName + ", " + zipCode;
-		return addressLine1 +", "+addressLine2 +", "+ cityName + ", " + zipCode;}
+			return "\n"+addressLine1 +"\n"+ cityName + "\n" + zipCode;
+		return addressLine1 +"\n"+addressLine2 +"\n"+ cityName + "\n" + zipCode;}
 	
 //	GETTERS AND SETTERS FOR VARIABLES
 	public void setAddressLine1(String str) {

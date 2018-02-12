@@ -18,8 +18,17 @@ public class CheckingBankAccount {
 	public void setBalance(double b) {
 		this.balance = b;}
 	
+	public void setBalanceWithString(String b) {
+		if(validDouble(b)) {
+			this.balance = Double.parseDouble(b);}
+		else
+			JOptionPane.showMessageDialog(null, "Enter a valid amount.");}
+	
 	public double getBalance() {
 		return this.balance;}
+	public String getBalanceAsString() {
+		return Double.toString(balance);
+	}
 	
 	//Uses BigDecimal Class to prevent decimal arithmetic problem
 	public void withdraw(String input) {

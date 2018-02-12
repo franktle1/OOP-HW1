@@ -25,12 +25,14 @@ public class CreateNewClient{
 		JLabel addLine2 = new JLabel("Address Line 2: ");
 		JLabel cityLine = new JLabel("City: ");
 		JLabel zipLine = new JLabel("Zip: ");
+		JLabel depositLine = new JLabel("Initial Deposit: ");
 		JTextField ffield = new JTextField(20);
 		JTextField lfield = new JTextField(20);
 		JTextField add1Field = new JTextField(20);
 		JTextField add2Field = new JTextField(20);
 		JTextField cityField = new JTextField(20);
 		JTextField zipField = new JTextField(20);
+		JTextField depositField = new JTextField(20);
 		
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();//needed for GBLO
@@ -140,6 +142,22 @@ public class CreateNewClient{
 		gc.anchor = GridBagConstraints.LINE_START;
 		panel.add(zipField, gc);
 		
+		/////////////////// ZIP CODE /////////////////////////////	
+		gc.gridy++;
+		gc.gridx = 0;
+		gc.weightx = 1;
+		gc.weighty = .1; 
+		
+		gc.insets = new Insets(0, 0, 0, 20);
+		gc.anchor = GridBagConstraints.LINE_END;
+		panel.add(depositLine, gc);
+		
+		// TextField
+		gc.gridx = 1;
+		gc.insets = new Insets(0, 0, 0, 0);
+		gc.anchor = GridBagConstraints.LINE_START;
+		panel.add(depositField, gc);
+		
 		/////////////    END OF GRIDBAG LAYOUT BOILERPLATE CODE FOR panel ///////////////////////////////
 		
 		
@@ -147,15 +165,16 @@ public class CreateNewClient{
 		int result = JOptionPane.showConfirmDialog(null, panel, "Get Customer Info", JOptionPane.OK_CANCEL_OPTION);
 		if(result == JOptionPane.OK_OPTION) {
 			newClient= new Person(ffield.getText(), lfield.getText());
-			if(add2Field.getText().isEmpty() | add2Field.getText()==null) 
+			//To account for Address Line 2 missing
+			if(add2Field.getText().isEmpty() | add2Field.getText()==null) {
 				newClient.setAddress(new Address(add1Field.getText(), cityField.getText(), zipField.getText()));
+				newClient.getMyAccount().setBalanceWithString(depositField.getText());}
 			else 
 				newClient.setAddress(new Address(add1Field.getText(), add2Field.getText(), cityField.getText(), zipField.getText()));
-			}
+				newClient.getMyAccount().setBalanceWithString(depositField.getText());}
 		else {
 			System.out.println("Shutting down for business.");
-			System.exit(0);
-			}
+			System.exit(0);}
 	}//end of Set Client Info
 	
 	public Person getNewClient() {

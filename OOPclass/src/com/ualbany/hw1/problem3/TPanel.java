@@ -23,5 +23,8 @@ public class TPanel extends JPanel {
 	public void addText(String text) {
 		textArea.append(text);
 	}
+	public void delText() {
+		textArea.setText("");
+	}
 	
 }
