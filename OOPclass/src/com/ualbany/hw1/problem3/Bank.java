@@ -22,18 +22,39 @@ public class Bank {
 		this.bankAddress = bankAddress;}
 
 	public static void main(String[] args) {
+		String options[] = {"Make a new account", "Demo", "Exit"};
+		int select = JOptionPane.showOptionDialog(null, "Choose your option.", "Main Menu", 0, 1, null, options, 0);
 		
-		Bank bank = new Bank("SEFCU",
-				new Address("123 Main Avenue", "Albany", "12222"));
+		switch(select){
+			case 0:
+				Bank bank = new Bank("SEFCU",
+						new Address("123 Main Avenue", "Albany", "12222"));
+				CreateNewClient c = new CreateNewClient();
+				Person customer = c.getNewClient();
+				System.out.println("Full Name: "+customer.getFullName() + "\nFullAddress: "+ customer.getFullAddress());
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						new MainFrame(bank, customer);
+					}
+				});
+				break;
+			case 1:
+				JOptionPane.showMessageDialog(null, "Still needs implementing.");
+				break;
+			case 2:
+				System.out.println("GoodBye.");
+				System.exit(1);
+				break;
+			default: 
+				System.exit(1);
+			
+				
+		}
+			
+			
+			
 		
-		CreateNewClient customer = new CreateNewClient();
 		
-//		SwingUtilities.invokeLater(new Runnable() {
-//			public void run() {
-//				new MainFrame(bank, customer);
-//			}
-//		});
-//		
 		
 ////		This instantiates a Person object with a checking balance = 0;
 //		Person customer = new Person("Bob", "Marley");

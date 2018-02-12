@@ -3,7 +3,6 @@ package com.ualbany.hw1.problem3;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,21 +13,8 @@ public class CreateNewClient{
 	
 	private Person newClient;
 
-//	private JLabel firstname;
-//	private JLabel lastname;
-//	private JLabel addLine1;
-//	private JLabel addLine2;
-//	private JLabel cityLine;
-//	private JLabel zipLine;
-//	private JTextField ffield;
-//	private JTextField lfield;
-//	private JTextField add1Field;
-//	private JTextField add2Field;
-//	private JTextField cityField;
-//	private JTextField zipField;
 	public CreateNewClient() {
 		setClientInfo();
-		System.out.println("Client Address is:" + newClient.getFullAddress());
 	}
 	
 	public void setClientInfo(){
@@ -152,7 +138,7 @@ public class CreateNewClient{
 		gc.gridx = 1;
 		gc.insets = new Insets(0, 0, 0, 0);
 		gc.anchor = GridBagConstraints.LINE_START;
-		panel.add(cityField, gc);
+		panel.add(zipField, gc);
 		
 		/////////////    END OF GRIDBAG LAYOUT BOILERPLATE CODE FOR panel ///////////////////////////////
 		
@@ -161,15 +147,20 @@ public class CreateNewClient{
 		int result = JOptionPane.showConfirmDialog(null, panel, "Get Customer Info", JOptionPane.OK_CANCEL_OPTION);
 		if(result == JOptionPane.OK_OPTION) {
 			newClient= new Person(ffield.getText(), lfield.getText());
-			if(add2Field.getText().isEmpty() | add2Field.getText()==null)
+			if(add2Field.getText().isEmpty() | add2Field.getText()==null) 
 				newClient.setAddress(new Address(add1Field.getText(), cityField.getText(), zipField.getText()));
-			else
+			else 
 				newClient.setAddress(new Address(add1Field.getText(), add2Field.getText(), cityField.getText(), zipField.getText()));
 			}
-		else
+		else {
+			System.out.println("Shutting down for business.");
 			System.exit(0);
+			}
 	}//end of Set Client Info
 	
+	public Person getNewClient() {
+		return newClient;
+	}
 	
 	
 
