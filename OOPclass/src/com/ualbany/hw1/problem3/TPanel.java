@@ -1,6 +1,7 @@
 package com.ualbany.hw1.problem3;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -12,8 +13,11 @@ public class TPanel extends JPanel {
 	
 	public TPanel() {
 		textArea = new JTextArea();
+		textArea.setLineWrap(true);				//Wraps Text
+		textArea.setWrapStyleWord(true);		//Wraps Text on word
 		setLayout(new BorderLayout());
-		add(new JScrollPane(textArea), BorderLayout.CENTER);
+		add(new JScrollPane(textArea,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
 	}
 	
 	public void addText(String text) {

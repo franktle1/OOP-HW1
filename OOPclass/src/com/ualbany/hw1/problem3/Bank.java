@@ -40,46 +40,41 @@ public class Bank {
 				break;
 			case 1:
 				JOptionPane.showMessageDialog(null, "Still needs implementing.");
+				
+//				This instantiates a Person object with a checking balance = 0;
+				Person cust = new Person("Bob", "Marley");
+				cust.setAddress(new Address("123 Fake St.", "Albany", "12200"));
+				Bank ba = new Bank("SEFCU",
+						new Address("123 Main Avenue", "Albany", "12222"));
+				
+//				Simulates person arriving at the bank
+				System.out.println("Bank Name:" + ba.getName()+"\nClient name: "+ cust.getFullName());
+				printReceipt(cust);
+//				Simulates opening a new account with initial deposit of 1000.00
+				cust.setMyAccount(new CheckingBankAccount(1000.00));
+				printReceipt(cust);
+				
+//				Simulates deposit then persons name, their address, and balance prints
+				cust.getMyAccount().deposit("1000.00");
+				printReceipt(cust);
+				cust.getMyAccount().withdraw("500.00");
+				printReceipt(cust);
 				break;
 			case 2:
-				System.out.println("GoodBye.");
+				System.out.println("GoodBye.");	
 				System.exit(1);
 				break;
 			default: 
-				System.exit(1);
-			
-				
+				System.exit(1);				
 		}
-			
-			
-			
-		
-		
-		
-////		This instantiates a Person object with a checking balance = 0;
-//		Person customer = new Person("Bob", "Marley");
-//		customer.setAddress(new Address("123 Fake St.", "Albany", "12200"));
-//		Bank bank = new Bank("SEFCU",
-//				new Address("123 Main Avenue", "Albany", "12222"));
-//		
-////		Simulates person arriving at the bank
-//		System.out.println("Bank Name:" + bank.getName()+"\nClient name: "+ customer.getFullName());
-//		printReceipt(customer);
-////		Simulates opening a new account with initial deposit of 1000.00
-//		customer.setMyAccount(new CheckingBankAccount(1000.00));
-//		printReceipt(customer);
-//		
-////		Simulates deposit then persons name, their address, and balance prints
-//		customer.getMyAccount().deposit("1000.00");
-//		printReceipt(customer);
-//		customer.getMyAccount().withdraw("500.00");
-//		printReceipt(customer);
+
 	}
 
 	
 	public static void printReceipt(Person customer) {
 		System.out.println("Name: "+ customer.getFullName()+"\nClient Address: "+
-				customer.getFullAddress()+"\nCurrent Balance:"+ customer.getMyAccount().getBalance());
+				customer.getFullAddress()+"\nCurrent Balance:"+ customer.getMyAccount().getBalance()+
+				"\n-------------------\n-------------------");
 	}
 	
 	

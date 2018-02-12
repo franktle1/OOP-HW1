@@ -30,7 +30,7 @@ public class FPanel extends JPanel{
 		gc.gridy = 0;
 		gc.fill = GridBagConstraints.NONE;//horizontal, vertical, none;
 		
-		
+		//THIS IS WHAT THE 
 		
 		
 		
