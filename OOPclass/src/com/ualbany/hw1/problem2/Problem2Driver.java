@@ -120,9 +120,22 @@ public class Problem2Driver extends JFrame {
 		bonusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Random generator = new Random();
+				int numberOfHeads = 0, numberOfTails = 0;
+				String resultString = new String("");
 				
+				for(int i = 0; i < 10; i++) {
+				//range is from 0 to 1
+				int number = generator.nextInt(2);
+				if(number == 1) {
+					++numberOfHeads;
+					resultString = resultString + "heads\n";}
+				else {
+					++numberOfTails;
+					resultString = resultString + "tails\n";}
+				}
 				
-				JOptionPane.showMessageDialog(null, "Still Working On It!!");
+				JOptionPane.showMessageDialog(null, "Results:\n" + resultString +"Tally--> Heads:"+
+				numberOfHeads+ " VERSUS Tails: "+ numberOfTails);
 			}});
 		
 		quitButton.addActionListener(new ActionListener(){
@@ -138,8 +151,8 @@ public class Problem2Driver extends JFrame {
 		setVisible(true);	
 	}
 	
-	public static boolean validDouble(String str) {
-		
+	//checks if the string is a valid double.
+	public static boolean validDouble(String str) {	
 		try {
 			double num = Double.parseDouble(str);
 			return true;}
