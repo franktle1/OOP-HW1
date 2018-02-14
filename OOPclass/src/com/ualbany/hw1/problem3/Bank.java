@@ -29,7 +29,7 @@ public class Bank {
 		switch(select){
 			case 0:
 				Bank bank = new Bank("SEFCU",
-						new Address("123 Main Avenue", "Albany", "12222"));
+						new Address("123 Main Avenue", "Albany","NY","12222"));
 				CreateNewClient c = new CreateNewClient();
 				Person customer = c.getNewClient();
 				SwingUtilities.invokeLater(new Runnable() {
@@ -42,9 +42,9 @@ public class Bank {
 				JOptionPane.showMessageDialog(null, "Check Console");
 //				This instantiates a Person object with a checking balance = 0;
 				Person cust = new Person("Bob", "Marley");
-				cust.setAddress(new Address("123 Fake St.", "Albany", "12200"));
+				cust.setAddress(new Address("123 Fake St.", "Albany","NY","12200"));
 				Bank ba = new Bank("SEFCU",
-						new Address("123 Main Avenue", "Albany", "12222"));
+						new Address("123 Main Avenue", "Albany", "NY","12222"));
 				
 //				Simulates person arriving at the bank
 				System.out.println("Bank Name:" + ba.getName()+"\nClient name: "+ cust.getFullName());

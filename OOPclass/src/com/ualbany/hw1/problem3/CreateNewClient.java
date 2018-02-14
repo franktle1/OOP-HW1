@@ -25,6 +25,7 @@ public class CreateNewClient{
 		JLabel addLine1 = new JLabel("Address Line 1: ");
 		JLabel addLine2 = new JLabel("Address Line 2: ");
 		JLabel cityLine = new JLabel("City: ");
+		JLabel stateLine = new JLabel("State: ");
 		JLabel zipLine = new JLabel("Zip: ");
 		JLabel depositLine = new JLabel("Initial Deposit: ");
 		JTextField ffield = new JTextField(20);
@@ -32,6 +33,7 @@ public class CreateNewClient{
 		JTextField add1Field = new JTextField(20);
 		JTextField add2Field = new JTextField(20);
 		JTextField cityField = new JTextField(20);
+		JTextField stateField = new JTextField(20);
 		JTextField zipField = new JTextField(20);
 		JTextField depositField = new JTextField(20);
 		
@@ -126,6 +128,22 @@ public class CreateNewClient{
 		gc.anchor = GridBagConstraints.LINE_START;
 		panel.add(cityField, gc);
 		
+		/////////////////// STATE  /////////////////////////////	
+		gc.gridy++;
+		gc.gridx = 0;
+		gc.weightx = 1;
+		gc.weighty = .1; 	
+		
+		gc.insets = new Insets(0, 0, 0, 20);
+		gc.anchor = GridBagConstraints.LINE_END;
+		panel.add(stateLine, gc);
+		
+		// TextField
+		gc.gridx = 1;
+		gc.insets = new Insets(0, 0, 0, 0);
+		gc.anchor = GridBagConstraints.LINE_START;
+		panel.add(stateField, gc);
+		
 		
 		/////////////////// ZIP CODE /////////////////////////////	
 		gc.gridy++;
@@ -143,7 +161,7 @@ public class CreateNewClient{
 		gc.anchor = GridBagConstraints.LINE_START;
 		panel.add(zipField, gc);
 		
-		/////////////////// ZIP CODE /////////////////////////////	
+		/////////////////// INITIAL DEPOSIT  /////////////////////////////	
 		gc.gridy++;
 		gc.gridx = 0;
 		gc.weightx = 1;
@@ -168,11 +186,11 @@ public class CreateNewClient{
 			newClient= new Person(ffield.getText(), lfield.getText());
 			//To take into consideration whether Address Line 2 missing
 			if(add2Field.getText().isEmpty() | add2Field.getText()==null) {
-				newClient.setAddress(new Address(add1Field.getText(), cityField.getText(), zipField.getText()));
+				newClient.setAddress(new Address(add1Field.getText(), cityField.getText(), stateField.getText(), zipField.getText()));
 				newClient.getMyAccount().setBalanceWithString(depositField.getText());
 			}
 			else 
-				newClient.setAddress(new Address(add1Field.getText(), add2Field.getText(), cityField.getText(), zipField.getText()));
+				newClient.setAddress(new Address(add1Field.getText(), add2Field.getText(), cityField.getText(),stateField.getText(), zipField.getText()));
 				newClient.getMyAccount().setBalanceWithString(depositField.getText());}
 		else {
 			System.out.println("Shutting down for business.");
