@@ -16,7 +16,10 @@ import javax.swing.JTextField;
 public class Problem2Driver extends JFrame {
 	
 	public static void main(String[] args) {
+		//Creates an object that can perform calculations and passes it into the constructor class of ProblemDriver
 		HW1Problem2 r = new HW1Problem2();
+		
+		//Creates a Menu using JFrame with Buttons
 		Problem2Driver m = new Problem2Driver(r);
 	}
 	
@@ -50,6 +53,7 @@ public class Problem2Driver extends JFrame {
 		multipleButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				//adds components into a panel to receive input in dialog box
 				JTextField num1Field = new JTextField(5);
 				JTextField num2Field = new JTextField(5);
 				JPanel panel = new JPanel();
@@ -58,6 +62,7 @@ public class Problem2Driver extends JFrame {
 				panel.add(new JLabel("Divisor:"));
 				panel.add(num2Field);
 				
+				//throws a pop-up dialog with panel as component
 				int result = JOptionPane.showConfirmDialog(null, panel, "Input Numbers", JOptionPane.OK_CANCEL_OPTION);
 				if(result == JOptionPane.OK_OPTION) {
 					String input1 = num1Field.getText();
@@ -87,6 +92,7 @@ public class Problem2Driver extends JFrame {
 		distanceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//for modularity: Change number of inputs, add field labels in pairs, and String len format if more points are added
+				//creates the panel with components to add to message dialog box
 				final int numberOfInputs = 4;
 				JPanel panel = new JPanel();
 				JTextField [] fields = new JTextField[numberOfInputs];
@@ -96,6 +102,8 @@ public class Problem2Driver extends JFrame {
 					fields[i] = new JTextField(5);
 					panel.add(new JLabel(fieldLabels[i]));
 					panel.add(fields[i]);}
+				
+				
 				int result = JOptionPane.showConfirmDialog(null, panel, "Input Numbers", JOptionPane.OK_CANCEL_OPTION);
 				if(result == JOptionPane.OK_OPTION) {
 					String [] inputs = new String[numberOfInputs];
@@ -119,23 +127,7 @@ public class Problem2Driver extends JFrame {
 		
 		bonusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Random generator = new Random();
-				int numberOfHeads = 0, numberOfTails = 0;
-				String resultString = new String("");
-				
-				for(int i = 0; i < 10; i++) {
-				//range is from 0 to 1
-				int number = generator.nextInt(2);
-				if(number == 1) {
-					++numberOfHeads;
-					resultString = resultString + "heads\n";}
-				else {
-					++numberOfTails;
-					resultString = resultString + "tails\n";}
-				}
-				
-				JOptionPane.showMessageDialog(null, "Results:\n" + resultString +"Tally--> Heads:"+
-				numberOfHeads+ " VERSUS Tails: "+ numberOfTails);
+				info.coinFlip();
 			}});
 		
 		quitButton.addActionListener(new ActionListener(){
