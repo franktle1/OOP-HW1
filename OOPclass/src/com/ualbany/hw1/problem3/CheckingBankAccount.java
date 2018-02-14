@@ -21,11 +21,14 @@ public class CheckingBankAccount {
 	public void setBalanceWithString(String b) {
 		if(validDouble(b)) {
 			this.balance = Double.parseDouble(b);}
-		else
-			JOptionPane.showMessageDialog(null, "Enter a valid amount.");}
+		else {
+			JOptionPane.showMessageDialog(null, "Invalid Amount. Balance set to 0.");
+			this.balance = 0;}
+	}
 	
 	public double getBalance() {
 		return this.balance;}
+	
 	public String getBalanceAsString() {
 		return Double.toString(balance);
 	}
@@ -38,7 +41,7 @@ public class CheckingBankAccount {
 			BigDecimal bal = new BigDecimal(String.valueOf(balance));
 			this.balance = bal.subtract(num).doubleValue();}
 		else
-			JOptionPane.showMessageDialog(null, "Enter a valid amount.");}
+			return;}
 	
 	public void deposit(String input) {
 		if(validDouble(input)) {
@@ -47,7 +50,7 @@ public class CheckingBankAccount {
 			BigDecimal bal = new BigDecimal(String.valueOf(balance));
 			this.balance = bal.add(num).doubleValue();}
 		else
-			JOptionPane.showMessageDialog(null, "Enter a valid amount.");}
+			return;}
 	
 	//checks if the number is negative; the arg will have to be formatted
 	private boolean validDouble(String r) {

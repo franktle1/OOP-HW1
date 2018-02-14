@@ -22,16 +22,16 @@ public class Bank {
 		this.bankAddress = bankAddress;}
 
 	public static void main(String[] args) {
+		
+		//Generates the Menu Dialog to Demo or to manually input customer info
 		String options[] = {"Make a new account", "Demo", "Exit"};
 		int select = JOptionPane.showOptionDialog(null, "Choose your option.", "Main Menu", 0, 1, null, options, 0);
-		
 		switch(select){
 			case 0:
 				Bank bank = new Bank("SEFCU",
 						new Address("123 Main Avenue", "Albany", "12222"));
 				CreateNewClient c = new CreateNewClient();
 				Person customer = c.getNewClient();
-				System.out.println("Full Name: "+customer.getFullName() + "\nFullAddress: "+ customer.getFullAddress());
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						new MainFrame(bank, customer);
@@ -39,8 +39,7 @@ public class Bank {
 				});
 				break;
 			case 1:
-				JOptionPane.showMessageDialog(null, "Still needs implementing.");
-				
+				JOptionPane.showMessageDialog(null, "Check Console");
 //				This instantiates a Person object with a checking balance = 0;
 				Person cust = new Person("Bob", "Marley");
 				cust.setAddress(new Address("123 Fake St.", "Albany", "12200"));

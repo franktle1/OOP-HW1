@@ -1,12 +1,14 @@
 package com.ualbany.hw1.problem3;
 
+
+
 public class Person {
 	private Address myAddress;
 	private CheckingBankAccount myAccount;
 	private String firstName;
 	private String lastName;
 	
-	//this Construct instantiates a person with a name, and account with 0. 
+	//this Constructor instantiates a person with a name, and account with 0. 
 	public Person(String fn, String ln) {
 		this.firstName = fn;
 		this.lastName = ln;

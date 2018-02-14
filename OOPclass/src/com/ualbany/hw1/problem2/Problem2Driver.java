@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -117,6 +119,9 @@ public class Problem2Driver extends JFrame {
 		
 		bonusButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Random generator = new Random();
+				
+				
 				JOptionPane.showMessageDialog(null, "Still Working On It!!");
 			}});
 		

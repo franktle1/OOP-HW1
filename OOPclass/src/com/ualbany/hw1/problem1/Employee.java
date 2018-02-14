@@ -10,8 +10,10 @@ public class Employee {
 	public Employee(String fn, String ln, double ms) {
 		this.firstName = fn;
 		this.lastName = ln;
-		if (ms < 0)
+		if (ms < 0) {
+			JOptionPane.showMessageDialog(null, "Salary should be positive.\n Setting salary to 0.");
 			this.monthlySalary = 0.0;
+		}
 		else
 			this.monthlySalary = ms;}
 	

@@ -12,21 +12,16 @@ public class MainFrame extends JFrame {
 	
 	//MainFrame Class is where the components interact with each other; IE Switch-Board
 	public MainFrame(Bank bank, Person customer) {
-		super("Bank Simulator");					//title
-		//Instantiated objects
-		
+		super("Bank Simulator");					
 		textPanel = new TPanel(); 					//used for displaying output
-		formPanel = new FPanel(customer);					//used for capturing customer request		
-		
+		formPanel = new FPanel(customer);			//used for capturing customer request		
 		
 		defaultGreeting(bank, customer);
 		
 		add(textPanel,BorderLayout.CENTER);
 		add(formPanel, BorderLayout.WEST);
 		
-		/*
-		THESE ARE WHERE THE COMPONENT LISTENERS WILL GO
-		*/
+	
 		formPanel.setFormListener(new FormListener() {
 			//creates the interface method here
 			public void formEventOccurred(FormEvent e) {
@@ -37,20 +32,25 @@ public class MainFrame extends JFrame {
 				String transactionAmt = e.getAmount();
 				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 				
+				if(transaction.compareTo("Deposit")==0)
+					customer.getMyAccount().deposit(transactionAmt);
+				else
+					customer.getMyAccount().withdraw(transactionAmt);
+				
+				String currentBalance = customer.getMyAccount().getBalanceAsString();
+				
 				textPanel.addText("\n\n=========\n"+ timestamp +"\n========"
 						+ "\nCustomer Name: " + fullName +"\nCustomer Address:\n" + fullAddress +
 						"\nTransaction Type:" + transaction + "\nTransaction Amount: " +
-						transactionAmt + "\nBalance: To be updated.");
+						transactionAmt + "\nBalance: "+ currentBalance);
 			}
-			
 		});
 		
-		
+	
 		//sets the JFrame
 		setSize(500, 500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-		
+		setVisible(true);	
 	}
 	
 	public void defaultGreeting(Bank b, Person p) {

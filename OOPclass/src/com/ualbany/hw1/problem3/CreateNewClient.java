@@ -17,6 +17,7 @@ public class CreateNewClient{
 		setClientInfo();
 	}
 	
+	//Creates a dialog confirmation box with multiple text fields to create a Person Object
 	public void setClientInfo(){
 		JPanel panel = new JPanel();
 		JLabel firstname = new JLabel("First Name: ");
@@ -161,14 +162,15 @@ public class CreateNewClient{
 		/////////////    END OF GRIDBAG LAYOUT BOILERPLATE CODE FOR panel ///////////////////////////////
 		
 		
-		
+		//Creates Person object if OK Button is selected, Closes Program otherwise
 		int result = JOptionPane.showConfirmDialog(null, panel, "Get Customer Info", JOptionPane.OK_CANCEL_OPTION);
 		if(result == JOptionPane.OK_OPTION) {
 			newClient= new Person(ffield.getText(), lfield.getText());
-			//To account for Address Line 2 missing
+			//To take into consideration whether Address Line 2 missing
 			if(add2Field.getText().isEmpty() | add2Field.getText()==null) {
 				newClient.setAddress(new Address(add1Field.getText(), cityField.getText(), zipField.getText()));
-				newClient.getMyAccount().setBalanceWithString(depositField.getText());}
+				newClient.getMyAccount().setBalanceWithString(depositField.getText());
+			}
 			else 
 				newClient.setAddress(new Address(add1Field.getText(), add2Field.getText(), cityField.getText(), zipField.getText()));
 				newClient.getMyAccount().setBalanceWithString(depositField.getText());}
@@ -176,6 +178,7 @@ public class CreateNewClient{
 			System.out.println("Shutting down for business.");
 			System.exit(0);}
 	}//end of Set Client Info
+	
 	
 	public Person getNewClient() {
 		return newClient;

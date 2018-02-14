@@ -11,6 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -35,13 +36,13 @@ public class FPanel extends JPanel{
 	private JButton cancelButton;
 	private FormListener formListener;
 	
+	private String balance;
+	
 
 	
 	public FPanel(Person customer) {
-		String balance = customer.getMyAccount().getBalanceAsString();
 
 		amountField = new JTextField(10);
-		currBalanceField = new JTextField(10); //this should show the current balance of user
 		enterButton = new JButton("Enter");
 		cancelButton = new JButton("Cancel");
 		
@@ -52,10 +53,11 @@ public class FPanel extends JPanel{
 		depositButton = new JRadioButton();
 		withdrawButton.setActionCommand("Withdraw");
 		depositButton.setActionCommand("Deposit");
+		depositButton.setSelected(true);
+		
 		ButtonGroup buttonGroup = new ButtonGroup();
 		buttonGroup.add(withdrawButton);
 		buttonGroup.add(depositButton);
-		
 		
 		Border tb = BorderFactory.createTitledBorder("Transaction Panel");
 		setBorder(tb);
@@ -64,8 +66,6 @@ public class FPanel extends JPanel{
 		setPreferredSize(dim);
 		
 		formatPanel();
-		currBalanceField.setText("$"+balance);
-		currBalanceField.setEditable(false);
 		
 		//when enter is pressed, a FormEvent is created with the information gathered from the activity done in FPanel
 		enterButton.addActionListener(new ActionListener() {
@@ -74,13 +74,20 @@ public class FPanel extends JPanel{
 				//data to be sent (I'll only be using what type of transaction was passed, and the amount entered by user)
 				String transaction = (String)buttonGroup.getSelection().getActionCommand(); //gets what was selected and gets corresponding command "Withdraw" or "Deposit" 
 				String amount = (String)amountField.getText();
+				
 				FormEvent ev = new FormEvent(this,transaction, amount);
-				if(formListener != null)
+				if(formListener != null) {
 					formListener.formEventOccurred(ev);
+					}
 			}
 		});
-		
-		
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Thank you for banking with us today.");
+				System.exit(1);
+			}
+			
+		});
 	}
 	
 	public void formatPanel() {
@@ -127,22 +134,7 @@ public class FPanel extends JPanel{
 		gc.anchor = GridBagConstraints.LINE_START;
 		add(depositButton, gc);
 		
-		/////////////////// CURRENT BALANCE /////////////////////////////
-		gc.gridy++; //for every new row, it'll increment y automatically//also means layout is done row-by-row
-		gc.gridx = 0;		
-		gc.weightx = 1;
-		gc.weighty = .1; 
-		
 
-		gc.insets = new Insets(0, 0, 0, 5);
-		gc.anchor = GridBagConstraints.LINE_END;
-		add(new JLabel("Balance: "), gc);
-		
-		gc.gridx = 2;
-
-		gc.insets = new Insets(0, 0, 0, 0);
-		gc.anchor = GridBagConstraints.LINE_START;
-		add(currBalanceField, gc);
 		
 		///////////////////  AMOUNT  /////////////////////////////
 		gc.gridy++; //for every new row, it'll increment y automatically//also means layout is done row-by-row
@@ -197,3 +189,22 @@ public class FPanel extends JPanel{
 	}
 	
 }
+
+
+
+///////////////////// CURRENT BALANCE ///////////////////////////// UNIMPLEMENTED
+//gc.gridy++; //for every new row, it'll increment y automatically//also means layout is done row-by-row
+//gc.gridx = 0;		
+//gc.weightx = 1;
+//gc.weighty = .1; 
+//
+//
+//gc.insets = new Insets(0, 0, 0, 5);
+//gc.anchor = GridBagConstraints.LINE_END;
+//add(new JLabel("Balance: "), gc);
+//
+//gc.gridx = 2;
+//
+//gc.insets = new Insets(0, 0, 0, 0);
+//gc.anchor = GridBagConstraints.LINE_START;
+//add(currBalanceField, gc);
